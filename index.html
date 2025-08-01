@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2196F3">
+    <link rel="manifest" href="manifest.json">
+    <title>Учет продаж собак</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="phone-container">
+        <div class="app-header">
+            <h1>Учет продаж собак</h1>
+        </div>
+
+        <div class="tab-navigation">
+            <div class="tab active" data-screen="main">Главная</div>
+            <div class="tab" data-screen="inventory">Учет</div>
+            <div class="tab" data-screen="add-sale">Продажа</div>
+            <div class="tab" data-screen="history">История</div>
+        </div>
+
+        <div class="content">
+            <!-- Главный экран -->
+            <div id="main" class="screen active">
+                <div class="balance-card">
+                    <h2>Баланс</h2>
+                    <div class="balance-row">
+                        <span>Партнер 1:</span>
+                        <span class="balance-amount" id="balance1">0</span>
+                    </div>
+                    <div class="balance-row">
+                        <span>Партнер 2:</span>
+                        <span class="balance-amount" id="balance2">0</span>
+                    </div>
+                    <div class="balance-total">
+                        <div class="balance-row">
+                            <span>Общий баланс:</span>
+                            <span class="balance-amount" id="balanceTotal">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dog-inventory">
+                    <h3>Наличие собак</h3>
+                    <div id="dogSummary"></div>
+                </div>
+            </div>
+
+            <!-- Экран учета собак -->
+            <div id="inventory" class="screen">
+                <div class="dogs-list">
+                    <h3>Список собак</h3>
+                    <div id="dogsList"></div>
+                </div>
+
+                <div class="add-dog-form">
+                    <h4>Добавить собаку</h4>
+                    <form id="addDogForm">
+                        <div class="form-group">
+                            <label>Порода</label>
+                            <select id="dogBreed">
+                                <option value="cocker">Английский кокер спаниель</option>
+                                <option value="maltipoo">Мальтипу</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Пол</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="dogGender" value="male" id="dogMale" checked>
+                                    <label for="dogMale">♂ Кобель</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="dogGender" value="female" id="dogFemale">
+                                    <label for="dogFemale">♀ Сука</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Дата рождения</label>
+                            <input type="date" id="dogBirthDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>У кого находится</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="dogOwner" value="1" id="dogOwner1" checked>
+                                    <label for="dogOwner1">Партнер 1</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="dogOwner" value="2" id="dogOwner2">
+                                    <label for="dogOwner2">Партнер 2</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn add-btn">Добавить собаку</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Экран добавления продажи -->
+            <div id="add-sale" class="screen">
+                <div class="available-info" id="availableInfo"></div>
+
+                <form id="addSaleForm">
+                    <div class="form-group">
+                        <label>Дата продажи</label>
+                        <input type="date" id="saleDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Порода</label>
+                        <select id="saleBreed">
+                            <option value="cocker">Английский кокер спаниель</option>
+                            <option value="maltipoo">Мальтипу</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Пол</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="saleGender" value="male" id="saleMale" checked>
+                                <label for="saleMale">♂ Кобель</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="saleGender" value="female" id="saleFemale">
+                                <label for="saleFemale">♀ Сука</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>У кого была собака</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="seller" value="1" id="seller1" checked>
+                                <label for="seller1">Партнер 1</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="seller" value="2" id="seller2">
+                                <label for="seller2">Партнер 2</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Цена продажи</label>
+                        <input type="number" id="salePrice" placeholder="Введите сумму" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Способ оплаты</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="payment" value="cash" id="cash" checked>
+                                <label for="cash">Наличные</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="payment" value="card" id="card">
+                                <label for="card">Карта</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group money-info">
+                        <p><strong>Деньги будут у:</strong> <span id="moneyRecipient">Партнер 1 (продавец)</span></p>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Добавить продажу</button>
+                </form>
+            </div>
+
+            <!-- Экран истории -->
+            <div id="history" class="screen">
+                <div id="historyList"></div>
+                <button class="clear-history-btn" id="clearHistoryBtn">Обнулить историю и балансы</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
